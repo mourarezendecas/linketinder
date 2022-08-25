@@ -15,10 +15,13 @@ class CriaCandidatoTest extends Specification {
             competencias: [],
             empresasCurtidas: [])
 
-    def "Adição de competencias"(){
+    def "Adição de competência"(){
+        given:
+            def competencias = ["Java", "Python"]
         when:
-            candidato.competencias.add("Swift")
+            candidato.competencias.add(competencias)
         then:
-            candidato.competencias.contains("Swift")
+            candidato.competencias.contains(competencias)
     }
+
 }

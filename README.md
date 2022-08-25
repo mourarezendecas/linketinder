@@ -33,6 +33,7 @@ O Linketinder é um sistema de contratação de funcionários, inspirado no Link
   - Para cada empresa, tem que ser possível salvar informações de Nome, E-mail Corporativo, CNPJ, País, Estado, CEP e Descrição da empresa;
   - A empresa também tem um atributo de competências, que se refere ao que a empresa espera dos candidatos;
 - É obrigatório ser possível listar todas empresas e todos os candidatos; 
+- Teste unitário para a etapa de cadastro de novo usuário (candidato ou empresa). É o teste para a inserção de novo elemento nos arrays.
 
 ## Requisitos Opcionais: 
 - Ser possível fazer o cadastro de novos candidatos ou empresas;

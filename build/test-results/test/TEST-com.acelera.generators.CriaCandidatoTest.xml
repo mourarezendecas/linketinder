@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.acelera.generators.CriaCandidatoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-25T15:09:18" hostname="rkd" time="0.065">
+<testsuite name="com.acelera.generators.CriaCandidatoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-25T19:03:48" hostname="rkd" time="0.062">
   <properties/>
-  <testcase name="Adição de competencias" classname="com.acelera.generators.CriaCandidatoTest" time="0.065"/>
+  <testcase name="Checagem de competência" classname="com.acelera.generators.CriaCandidatoTest" time="0.062"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
