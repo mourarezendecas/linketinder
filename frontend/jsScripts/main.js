@@ -197,24 +197,46 @@ submitEmpresa === null || submitEmpresa === void 0 ? void 0 : submitEmpresa.addE
     empresa.descricao = inputDescricaoEmpresa === null || inputDescricaoEmpresa === void 0 ? void 0 : inputDescricaoEmpresa.value;
     //Adiciona o candidato instânciado na lista de candidatos
     listaEmpresas.push(empresa);
+    window.location.assign('../pages/pagina-empresa.html');
     console.log(empresa);
     console.log(listaEmpresas);
     console.log('submeteu');
 });
-//GERADOR DE HTML
+//---GERADORES DE HTML--- 
+//Gerador de empresas na página de candidatos 
 let i = 0;
-const element = document.createElement('div');
+const elementEmpresas = document.createElement('div');
 listaEmpresas.forEach(function (value) {
-    element.innerHTML +=
-        element.innerHTML = `
+    elementEmpresas.innerHTML +=
+        elementEmpresas.innerHTML = `
     <br>
     <h2 id="titulo-empresa">Nome da empresa: ${listaEmpresas[i].nome}</h2>
     <p id="descricao-empresa">Descrição: ${listaEmpresas[i].descricao}</p>
     <p id="competencias-empresa">Competências: ${listaEmpresas[i].competencias}</p>
     <p id="email-empresa">E-mail: ${listaEmpresas[i].email_corporativo}</p>
+    <button id='like'>LIKE</button>
+    <button id='dislike'>DISLIKE</button>
   `;
-    console.log(listaEmpresas[i].nome);
     i++;
 });
 const empresasCandidato = document.getElementById('mostrar-empresa');
-empresasCandidato === null || empresasCandidato === void 0 ? void 0 : empresasCandidato.appendChild(element);
+empresasCandidato === null || empresasCandidato === void 0 ? void 0 : empresasCandidato.appendChild(elementEmpresas);
+//Gerador de candidatos na página de empresas
+i = 0;
+const elementCandidatos = document.createElement('div');
+listaCandidatos.forEach(function (value) {
+    elementCandidatos.innerHTML +=
+        elementCandidatos.innerHTML = `
+  <br>
+  <h2 id="nome-candidato">Nome do candidato: ${listaCandidatos[i].nome}</h2>
+  <p id="descricao-candidato">Descrição: ${listaCandidatos[i].descricao}</p>
+  <p id="competencias-candidato">Competências: ${listaCandidatos[i].competencias}</p>
+  <p id="email">E-mail: ${listaCandidatos[i].email}</p>
+  <button id='like'>LIKE</button>
+  <button id='dislike'>DISLIKE</button>
+  `;
+    i++;
+    console.log('hi');
+});
+const candidatoEmpresa = document.getElementById('mostrar-candidatos');
+candidatoEmpresa === null || candidatoEmpresa === void 0 ? void 0 : candidatoEmpresa.appendChild(elementCandidatos);
