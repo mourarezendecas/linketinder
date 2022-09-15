@@ -183,6 +183,8 @@ submitCandidato?.addEventListener('click', function handleClick(event){
 
     //Adiciona o candidato instânciado na lista de candidatos
     listaCandidatos.push(candidato);
+    //Redireciona o candidato para a próxima página
+    window.location.assign('../pages/pagina-candidato.html');
     console.log(candidato);
     console.log(listaCandidatos)
     console.log('submeteu'); 
@@ -226,3 +228,7 @@ submitEmpresa?.addEventListener('click', function handleClick(event){
     console.log('submeteu'); 
 });
 
+const getCandidato = document.getElementById('get-candidato');
+getCandidato?.addEventListener('click', function handleClick(event) {
+  console.log(listaCandidatos);
+});

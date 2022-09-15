@@ -166,6 +166,8 @@ submitCandidato === null || submitCandidato === void 0 ? void 0 : submitCandidat
     candidato.descricao = inputDescricaoCandidato === null || inputDescricaoCandidato === void 0 ? void 0 : inputDescricaoCandidato.value;
     //Adiciona o candidato instânciado na lista de candidatos
     listaCandidatos.push(candidato);
+    //Redireciona o candidato para a próxima página
+    window.location.assign('../pages/pagina-candidato.html');
     console.log(candidato);
     console.log(listaCandidatos);
     console.log('submeteu');
@@ -198,4 +200,8 @@ submitEmpresa === null || submitEmpresa === void 0 ? void 0 : submitEmpresa.addE
     console.log(empresa);
     console.log(listaEmpresas);
     console.log('submeteu');
+});
+const getCandidato = document.getElementById('get-candidato');
+getCandidato === null || getCandidato === void 0 ? void 0 : getCandidato.addEventListener('click', function handleClick(event) {
+    console.log(listaCandidatos);
 });
