@@ -201,7 +201,20 @@ submitEmpresa === null || submitEmpresa === void 0 ? void 0 : submitEmpresa.addE
     console.log(listaEmpresas);
     console.log('submeteu');
 });
-const getCandidato = document.getElementById('get-candidato');
-getCandidato === null || getCandidato === void 0 ? void 0 : getCandidato.addEventListener('click', function handleClick(event) {
-    console.log(listaCandidatos);
+//GERADOR DE HTML
+let i = 0;
+const element = document.createElement('div');
+listaEmpresas.forEach(function (value) {
+    element.innerHTML +=
+        element.innerHTML = `
+    <br>
+    <h2 id="titulo-empresa">Nome da empresa: ${listaEmpresas[i].nome}</h2>
+    <p id="descricao-empresa">Descrição: ${listaEmpresas[i].descricao}</p>
+    <p id="competencias-empresa">Competências: ${listaEmpresas[i].competencias}</p>
+    <p id="email-empresa">E-mail: ${listaEmpresas[i].email_corporativo}</p>
+  `;
+    console.log(listaEmpresas[i].nome);
+    i++;
 });
+const empresasCandidato = document.getElementById('mostrar-empresa');
+empresasCandidato === null || empresasCandidato === void 0 ? void 0 : empresasCandidato.appendChild(element);
