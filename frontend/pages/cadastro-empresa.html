@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <title>Cadastro Empresa</title>
+</head>
+<body>
+    <h2 id="titulo-cadastro">Cadastro de Empresa</h2></div>
+    <div class="form">            
+        <div id="input-nome">
+            <label>Nome da empresa<span>*</span></label>
+            <input type="text" placeholder="Digite seu nome"  id="nome-empresa" required="required" aria-required="true">
+        </div>
+        <div id="input-cpf">
+            <label>CNPJ<span>*</span></label>
+            <input type="text" placeholder="Digite o CNPJ" id="cnpj-empresa" access="false" maxlength="11" required="required" aria-required="true">
+        </div>
+        <div id="input-cep">
+            <label>CEP<span>*</span></label>
+            <input type="text" placeholder="Digite seu CEP" id="cep-empresa" maxlength="8" required="required" aria-required="true">
+        </div>
+        <div id="input-estado">
+            <label>Estado<span>*</span></label>
+            <input type="text" placeholder="Digite as siglas do seu Estado" id="estado-empresa" maxlength="2" required="required" aria-required="true">
+        </div>
+        <id class="input-email">
+            <label>E-mail coorporativo<span>*</span></label>
+            <input type="email" placeholder="Digite seu e-mail" id="email-empresa" required="required" aria-required="true">
+        </div>
+        <div id="input-descricao">
+            <label>Nos informe uma descrição da empresa<span>*</span></label>
+            <textarea type="textarea" placeholder="&quot;Buscamos candidatos etc&quot;" id="descricao-empresa" rows="15" required="required" aria-required="true"></textarea>
+        </div>
+        <div id="input-competencias">
+            <label for="undefined" class="formbuilder-checkbox-group-label">Competências desejadas<span class="formbuilder-required">*</span></label>
+            <div class="checkbox-group">
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-0" required="required" aria-required="true" name="undefined[]" value="python" type="checkbox">
+                    <label for="control-7690869-0">Python</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-1" required="required" aria-required="true" name="undefined[]" value="java" type="checkbox">
+                    <label for="control-7690869-1">Java</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-2" required="required" aria-required="true" name="undefined[]" value="spring" type="checkbox">
+                    <label for="control-7690869-2">Spring Framework</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-3" required="required" aria-required="true" name="undefined[]" value="angular" type="checkbox">
+                    <label for="control-7690869-3">Angular</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-4" required="required" aria-required="true" name="undefined[]" value="swift" type="checkbox">
+                    <label for="control-7690869-4">Swift</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-5" required="required" aria-required="true" name="undefined[]" value="kotlin" type="checkbox">
+                    <label for="control-7690869-5">Kotlin</label>
+                </div>
+            </div>
+        </div>
+        <button id="botao-cadastrar-empresa">Cadastrar</button>
+    </div>
+</body>
+<script src="../jsScripts/main.js"></script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <title>Cadastro Candidato</title>
+</head>
+<body>
+    <h2 id="titulo-cadastro">Cadastro</h2></div>
+    <div class="form">            
+        <div id="input-nome">
+            <label>Nome<span>*</span></label>
+            <input type="text" placeholder="Digite seu nome"  id="nome-candidato" required="required" aria-required="true">
+        </div>
+        <div id="input-cpf">
+            <label>CPF<span>*</span></label>
+            <input type="text" placeholder="Digite seu CPF" id="cpf-candidato" access="false" maxlength="11" required="required" aria-required="true">
+        </div>
+        <div id="input-datanasc">
+            <label >Idade:<span>*</span></label>
+            <input type="number" id="idade-candidato" placeholder="Digite a sua idade" required="required" aria-required="true">
+        </div>
+        <div id="input-cep">
+            <label>CEP<span>*</span></label>
+            <input type="text" placeholder="Digite seu CEP" id="cep-candidato" maxlength="8" required="required" aria-required="true">
+        </div>
+        <div id="input-estado">
+            <label>Estado<span>*</span></label>
+            <input type="text" placeholder="Digite as siglas do seu Estado" id="estado-candidato" maxlength="2" required="required" aria-required="true">
+        </div>
+        <id class="input-email">
+            <label>E-mail<span>*</span></label>
+            <input type="email" placeholder="Digite seu e-mail" id="email-candidato" required="required" aria-required="true">
+        </div>
+        <div id="input-descricao">
+            <label>Nos informe uma descrição pessoal<span>*</span></label>
+            <input type="text" placeholder="&quot;Esforçado, etc&quot;" id="descricao-candidato" required="required" aria-required="true">
+        </div>
+        <div id="input-competencias">
+            <label for="undefined" class="formbuilder-checkbox-group-label">Competências<span class="formbuilder-required">*</span></label>
+            <div class="checkbox-group">
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-0" required="required" aria-required="true" name="undefined[]" value="python" type="checkbox">
+                    <label for="control-7690869-0">Python</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-1" required="required" aria-required="true" name="undefined[]" value="java" type="checkbox">
+                    <label for="control-7690869-1">Java</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-2" required="required" aria-required="true" name="undefined[]" value="spring" type="checkbox">
+                    <label for="control-7690869-2">Spring Framework</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-3" required="required" aria-required="true" name="undefined[]" value="angular" type="checkbox">
+                    <label for="control-7690869-3">Angular</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-4" required="required" aria-required="true" name="undefined[]" value="swift" type="checkbox">
+                    <label for="control-7690869-4">Swift</label>
+                </div>
+                <div class="formbuilder-checkbox">
+                    <input class="competencia-candidato" access="false" id="control-7690869-5" required="required" aria-required="true" name="undefined[]" value="kotlin" type="checkbox">
+                    <label for="control-7690869-5">Kotlin</label>
+                </div>
+            </div>
+        </div>
+        <button id="botao-cadastrar-candidato">Cadastrar</button>
+    </div>
+</body>
+<script src="../jsScripts/main.js"></script>
+</html>
