@@ -10,7 +10,7 @@ class Candidato {
         this.estado = '';
         this.email = '';
         this.descricao = '';
-        this.competencias = '';
+        this.competencias = [];
     }
 }
 //Classe Empresa
@@ -22,7 +22,7 @@ class Empresa {
         this.cnpj = '';
         this.cep = '';
         this.descricao = '';
-        this.competencias = '';
+        this.competencias = [];
     }
 }
 //---VARIÁVEIS GLOBAIS---
@@ -44,6 +44,7 @@ function geraCandidato() {
     c1.estado = 'GO';
     c1.cep = '74000-000';
     c1.descricao = 'Proativo e etc';
+    c1.competencias = ['Python', 'Java', 'Spring Framework', 'Angular', 'Swift', 'Kotlin'];
     listaCandidatos.push(c1);
     let c2 = new Candidato;
     c2.nome = 'Alana Freitas';
@@ -53,6 +54,7 @@ function geraCandidato() {
     c2.estado = 'SP';
     c2.cep = '74000-000';
     c2.descricao = 'Proativo e etc';
+    c2.competencias = ['Python', 'Java', 'Swift', 'Kotlin'];
     listaCandidatos.push(c2);
     let c3 = new Candidato;
     c3.nome = 'Maria Eduarda';
@@ -62,6 +64,7 @@ function geraCandidato() {
     c3.estado = 'RJ';
     c3.cep = '74000-000';
     c3.descricao = 'Esforçada';
+    c3.competencias = ['Python'];
     listaCandidatos.push(c3);
     let c4 = new Candidato;
     c4.nome = 'Paulo Ricardo';
@@ -71,6 +74,7 @@ function geraCandidato() {
     c4.estado = 'GO';
     c4.cep = '74000-000';
     c4.descricao = 'Honesto';
+    c4.competencias = ['Swift', 'Kotlin'];
     listaCandidatos.push(c4);
     let c5 = new Candidato;
     c5.nome = 'Mark Zuckeberg';
@@ -80,6 +84,7 @@ function geraCandidato() {
     c5.estado = 'US';
     c5.cep = '74000-000';
     c5.descricao = 'Vai roubar a sua vaga';
+    c5.competencias = ['Kotlin'];
     listaCandidatos.push(c5);
 }
 //Função que gera 5 empresas para testes
@@ -91,6 +96,7 @@ function geraEmpresa() {
     e1.estado = 'CA';
     e1.cep = '123123123';
     e1.descricao = 'One more thing...';
+    e1.competencias = ['Java', 'Spring Framework', 'Angular', 'Kotlin'];
     listaEmpresas.push(e1);
     let e2 = new Empresa;
     e2.nome = 'ZG Soluções';
@@ -99,6 +105,7 @@ function geraEmpresa() {
     e2.estado = 'GO';
     e2.cep = '123123123';
     e2.descricao = 'Solucionando';
+    e2.competencias = ['Python', 'Java', 'Spring Framework', 'Angular'];
     listaEmpresas.push(e2);
     let e3 = new Empresa;
     e3.nome = 'Amazon';
@@ -107,6 +114,7 @@ function geraEmpresa() {
     e3.estado = 'SP';
     e3.cep = '123123123';
     e3.descricao = "Jeff Bezzos' little childs";
+    e3.competencias = ['Python', 'Java', 'Spring Framework', 'Angular', 'Swift', 'Kotlin'];
     listaEmpresas.push(e3);
     let e4 = new Empresa;
     e4.nome = 'Roystar Royco';
@@ -115,6 +123,7 @@ function geraEmpresa() {
     e4.estado = 'USA';
     e4.cep = '123123123';
     e4.descricao = 'Mantendo em família';
+    e4.competencias = ['Python', 'Java', 'Spring Framework', 'Angular', 'Swift', 'Kotlin'];
     listaEmpresas.push(e4);
     let e5 = new Empresa;
     e5.nome = 'Nubank';
@@ -123,6 +132,7 @@ function geraEmpresa() {
     e5.estado = 'SP';
     e5.cep = '123123123';
     e5.descricao = 'Pensando roxo';
+    e5.competencias = ['Swift', 'Kotlin'];
     listaEmpresas.push(e5);
 }
 //---BOTÕES---
@@ -164,8 +174,10 @@ submitCandidato === null || submitCandidato === void 0 ? void 0 : submitCandidat
     //Coletando a descrição e adicionado na instancia 
     const inputDescricaoCandidato = document.getElementById('descricao-candidato');
     candidato.descricao = inputDescricaoCandidato === null || inputDescricaoCandidato === void 0 ? void 0 : inputDescricaoCandidato.value;
+    //Coletando as competências 
     //Adiciona o candidato instânciado na lista de candidatos
     listaCandidatos.push(candidato);
+    localStorage;
     //Redireciona o candidato para a próxima página
     window.location.assign('../pages/pagina-candidato.html');
     console.log(candidato);
@@ -236,7 +248,6 @@ listaCandidatos.forEach(function (value) {
   <button id='dislike'>DISLIKE</button>
   `;
     i++;
-    console.log('hi');
 });
 const candidatoEmpresa = document.getElementById('mostrar-candidatos');
 candidatoEmpresa === null || candidatoEmpresa === void 0 ? void 0 : candidatoEmpresa.appendChild(elementCandidatos);
