@@ -9,6 +9,7 @@
 
 ### <p align="center">Desenvolvido por: Gabriel Aguiar de Castro Moura Rezende</p>
 
+# <p align="center">Backend</p>
 
 ## Arquivo main
 O arquivo main se encontra no caminho: [linketinder/src/main/groovy/com/acelera/](https://github.com/mourarezendecas/linketinder/tree/master/src/main/groovy/com/acelera) e se chama Application.groovy
@@ -41,3 +42,8 @@ O Linketinder é um sistema de contratação de funcionários, inspirado no Link
 ## Casos de uso
 
 ## Diagrama de Classes
+
+# <p align="center">Frontend</p>
+Até então foi feito um projeto de frontend simples, integrando o TypeScript com HTML e CSS.
+
+Existe uma grande re-fatoração a ser feita mas acabei preferindo modularizar o meu sistema no kit 2. 
