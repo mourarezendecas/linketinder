@@ -47,3 +47,5 @@ O Linketinder é um sistema de contratação de funcionários, inspirado no Link
 Até então foi feito um projeto de frontend simples, integrando o TypeScript com HTML e CSS.
 
 Existe uma grande re-fatoração a ser feita mas acabei preferindo modularizar o meu sistema no kit 2. 
+
+Tendo em vista o prazo de entrega da sprint, eu preferi fazer a entrega mínima possível, infelizmente não consegui resolver o problema de que cada vez que o usuário carrega uma nova página, o sistema reinicia, pensei na possibilidade de utilizar o recurso de local storage, entretanto pelo o que vi, esse problema vai se resolver com BD ou até mesmo com a modularização do meu sistema em TS.
