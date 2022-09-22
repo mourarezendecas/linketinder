@@ -6,6 +6,7 @@ class Candidato{
     idade: string = ''
     cep: string = ''
     estado: string = ''
+    cidade: string = ''
     email: string = ''
     descricao: string = ''
     competencias: Array<string> = []
@@ -154,7 +155,56 @@ function validaNome(nome: string): boolean{
       return false // E retornarar false
     }
 }
+//Função que valida o CPF do candidato. 
+function validaCPF(CPF: string): boolean{
+  let regexCPF: RegExp = /\d{3}\d{3}\d{3}\d{2}/gi //RegEx responsável por validar o CPF
+    if(regexCPF.test(CPF))
+    {
+      return true//Caso seja válido, esta função irá retornar true.
+    }
+    else{
+      window.alert('CPF Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+      return false
+    }
+}
+//Função que valida CEP.
+function validaCEP(CEP: string):boolean{
+  let regexCEP: RegExp = /^[0-9]{5}-?[0-9]{3}$/gi //RegEx responsável por validar o CEP
+  if(regexCEP.test(CEP))
+    {
+      return true//Caso seja válido, o sistema irá adicionar o CEP do candidato no objeto instanciado.
+    }
+    else{
+      window.alert('CEP Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+      return false
+    }
+  
+}
+//Função que valida email.
+function validaEmail(email: string): boolean{
+  let regexEmail: RegExp = /\S+@\w+\.\w{2,6}(\.\w{2})?/gi //RegEx de validação do email
+  if(regexEmail.test(email))
+   {
+    return true //Caso seja válido,a função retornará true.
+   }   
+   else{
+    window.alert('Email incorreto!') //Caso negativa, o sistema apresenta uma mensagem de erro.
+    return false // E retorna false
+   }
 
+}
+//Função que valida cidade.
+function validaCidade(cidade: string):boolean{
+  let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+    if(regexNome.test(cidade))
+    {
+      return true//Caso seja válido, o sistema irá retornar true
+    }
+    else{
+      window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+      return false // E retornarar false
+    }
+}
 
 //---BOTÕES---
 //Botão para ir para a área de Cadastro de Candidato
@@ -176,30 +226,14 @@ const submitCandidato = document.getElementById('inputCandidato')
 submitCandidato?.addEventListener('click', function handleClick(event){
     //Instancia um candidato para setarmos os atributos 
     let candidato = new Candidato;
-    //Coletando o nome e adicionando na instância de Candidato
+   
+    //Coletando o nome do candidato
     const inputNomeCandidato = document.getElementById('inputName') as HTMLInputElement;
-    const nomeCandidato = inputNomeCandidato.value
-    //Testando o input do nome com RegEx
-    // let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
-    // if(regexNome.test(inputNomeCandidato.value))
-    // {
-    //   candidato.nome = inputNomeCandidato?.value//Caso seja válido, o sistema irá adicionar o nome do candidato no objeto instanciado.
-    // }
-    // else{
-    //   window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
-    // }
+    const nomeCandidato = inputNomeCandidato.value;
 
     //Coletando o CPF e adicionando na instancia
     const inputCPFCandidato = document.getElementById('inputCPF') as HTMLInputElement;
-    //Testando o input do CPF com RegEx
-    let regexCPF: RegExp = /\d{3}\d{3}\d{3}\d{2}/gi
-    if(regexCPF.test(inputCPFCandidato.value))
-    {
-      candidato.cpf = inputCPFCandidato?.value//Caso seja válido, o sistema irá adicionar o CPF do candidato no objeto instanciado.
-    }
-    else{
-      window.alert('CPF Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
-    }
+    const CPFCandidato = inputCPFCandidato.value;
 
     //Coletando a data de nasc. e adicionando na instancia - Corrigir isso depois
     const inputIdade = document.getElementById('inputIdade') as HTMLInputElement;
@@ -207,29 +241,20 @@ submitCandidato?.addEventListener('click', function handleClick(event){
 
     //Coletando o CEP e adicionando na instancia
     const inputCEPCandidato = document.getElementById('inputCEP') as HTMLInputElement;
-    let regexCEP: RegExp = /^[0-9]{5}-?[0-9]{3}$/gi
-    if(regexCEP.test(inputCEPCandidato.value))
-    {
-      candidato.cep = inputCEPCandidato.value//Caso seja válido, o sistema irá adicionar o CEP do candidato no objeto instanciado.
-    }
-    else{
-      window.alert('CEP Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
-    }
+    const CEPCandidato = inputCEPCandidato.value    
 
     //Coletando o Estado e adicionando na instancia
     const inputEstadoCandidato = document.getElementById('inputEstado') as HTMLInputElement;
     candidato.estado = inputEstadoCandidato?.value
 
+    //Coletando a cidade e adicionando na instancia
+    const inputCidadeCandidato = document.getElementById('inputEstado') as HTMLInputElement;
+    const cidadeCandidato = inputCidadeCandidato.value
+
     //Coletando o e-mail e adicionado na instancia 
     const inputEmailCandidato = document.getElementById('inputEmail') as HTMLInputElement;
-  let regexEmail: RegExp = /\S+@\w+\.\w{2,6}(\.\w{2})?/gi //RegEx te validação do email
-   if(regexEmail.test(inputEmailCandidato.value))
-   {
-    candidato.email = inputEmailCandidato.value //Caso seja válido, o sistema adiciona o email à instância criada
-   }   
-   else{
-    window.alert('Email incorreto!') //Caso negativa, o sistema apresenta uma mensagem de erro.
-   }
+    const emailCandidato = inputEmailCandidato.value
+
 
     //Coletando a descrição e adicionado na instancia 
     const inputDescricaoCandidato = document.getElementById('descricaoCandidato') as HTMLInputElement;
@@ -262,15 +287,18 @@ submitCandidato?.addEventListener('click', function handleClick(event){
     }
 
     //Adiciona o candidato instânciado na lista de candidatos
-    if(validaNome(nomeCandidato)){
-    console.log('Sucesso')
+    if(validaNome(nomeCandidato)&&validaCPF(CPFCandidato)&&validaCEP(CEPCandidato)&&validaEmail(emailCandidato)&&validaCidade(cidadeCandidato)){
     candidato.nome = nomeCandidato;
+    candidato.cpf = CPFCandidato;
+    candidato.cep = CEPCandidato; 
+    candidato.email = emailCandidato;
+    candidato.cidade = cidadeCandidato;
     listaCandidatos.push(candidato);
+    console.log('Submeteu o Candidato!'); 
     }
     //Redireciona o candidato para a próxima página
     console.log(candidato);
     console.log(listaCandidatos);
-    console.log('Submeteu o Candidato!'); 
 });
 
 //Botão para submeter uma nova Empresa
