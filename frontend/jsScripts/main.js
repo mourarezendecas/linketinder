@@ -19,6 +19,7 @@ class Empresa {
     constructor() {
         this.nome = '';
         this.email_corporativo = '';
+        this.cidade = '';
         this.estado = '';
         this.cnpj = '';
         this.cep = '';
@@ -94,7 +95,8 @@ function geraEmpresa() {
     e1.nome = 'Apple';
     e1.email_corporativo = 'jobs@apple.com';
     e1.cnpj = '00.000.0001/00';
-    e1.estado = 'CA';
+    e1.cidade = 'Campinas';
+    e1.estado = 'SP';
     e1.cep = '123123123';
     e1.descricao = 'One more thing...';
     e1.competencias = ['Java', 'Spring Framework', 'Angular', 'Kotlin'];
@@ -103,6 +105,7 @@ function geraEmpresa() {
     e2.nome = 'ZG Soluções';
     e2.email_corporativo = 'jobs@zg.com';
     e2.cnpj = '00.000.0001/00';
+    e2.cidade = 'Goiânia';
     e2.estado = 'GO';
     e2.cep = '123123123';
     e2.descricao = 'Solucionando';
@@ -112,6 +115,7 @@ function geraEmpresa() {
     e3.nome = 'Amazon';
     e3.email_corporativo = 'jobs@amazon.com';
     e3.cnpj = '00.000.0001/00';
+    e3.cnpj = 'São Paulo';
     e3.estado = 'SP';
     e3.cep = '123123123';
     e3.descricao = "Jeff Bezzos' little childs";
@@ -121,7 +125,8 @@ function geraEmpresa() {
     e4.nome = 'Roystar Royco';
     e4.email_corporativo = 'jobs@roystar.com';
     e4.cnpj = '00.000.0001/00';
-    e4.estado = 'USA';
+    e4.cidade = 'Porto Alegre';
+    e4.estado = 'RS';
     e4.cep = '123123123';
     e4.descricao = 'Mantendo em família';
     e4.competencias = ['Python', 'Java', 'Spring Framework', 'Angular', 'Swift', 'Kotlin'];
@@ -130,6 +135,7 @@ function geraEmpresa() {
     e5.nome = 'Nubank';
     e5.email_corporativo = 'jobs@nubank.com';
     e5.cnpj = '00.000.0001/00';
+    e5.cidade = 'São Paulo';
     e5.estado = 'SP';
     e5.cep = '123123123';
     e5.descricao = 'Pensando roxo';
@@ -139,7 +145,7 @@ function geraEmpresa() {
 //--FUNÇÕES--
 //Função que valida o nome do candidato.
 function validaNome(nome) {
-    let regexNome = /^[a-z ,.'-]+$/gi; //Regex que valida se o nome está inserido corretamente. 
+    let regexNome = /^([a-zA-Zà-úÀ-Ú0-9]|-|_|\s)+$/gi; //Regex que valida se o nome está inserido corretamente. 
     if (regexNome.test(nome)) {
         return true; //Caso seja válido, o sistema irá retornar true
     }
@@ -183,13 +189,24 @@ function validaEmail(email) {
 }
 //Função que valida cidade.
 function validaCidade(cidade) {
-    let regexNome = /^[a-z ,.'-]+$/gi; //Regex que valida se o nome está inserido corretamente. 
+    let regexNome = /^([a-zA-Zà-úÀ-Ú0-9]|-|_|\s)+$/gi; //Regex que valida se o nome da cidade está inserido corretamente. 
     if (regexNome.test(cidade)) {
         return true; //Caso seja válido, o sistema irá retornar true
     }
     else {
-        window.alert('Nome incorreto!'); //Caso esteja incorreto, o sistema notificará o usuário.
+        window.alert('Cidade Incorreta!'); //Caso esteja incorreto, o sistema notificará o usuário.
         return false; // E retornarar false
+    }
+}
+//Função que valida CNPJ
+function validaCNPJ(cnpj) {
+    let regexCNPJ = /^\d{2}\d{3}\d{3}\d{4}\d{2}$/gi;
+    if (regexCNPJ.test(cnpj)) {
+        return true;
+    }
+    else {
+        window.alert('CPNJ Inválido!');
+        return false;
     }
 }
 //---BOTÕES---
@@ -268,40 +285,73 @@ submitCandidato === null || submitCandidato === void 0 ? void 0 : submitCandidat
         candidato.cidade = cidadeCandidato;
         listaCandidatos.push(candidato);
         console.log('Submeteu o Candidato!');
+        window.location.assign('../pages/pagina-candidato.html');
     }
     //Redireciona o candidato para a próxima página
     console.log(candidato);
     console.log(listaCandidatos);
 });
 //Botão para submeter uma nova Empresa
-const submitEmpresa = document.getElementById('botao-cadastrar-empresa');
+const submitEmpresa = document.getElementById('inputEmpresa');
 submitEmpresa === null || submitEmpresa === void 0 ? void 0 : submitEmpresa.addEventListener('click', function handleClick(event) {
     //Instancia um candidato para setarmos os atributos 
     let empresa = new Empresa;
-    //Coletando o nome e adicionando na instância de Candidato
-    const inputNomeEmpresa = document.getElementById('nome-empresa');
-    empresa.nome = inputNomeEmpresa === null || inputNomeEmpresa === void 0 ? void 0 : inputNomeEmpresa.value;
-    //Coletando o CPF e adicionando na instancia
-    const inputCNPJEmpresa = document.getElementById('cnpj-empresa');
-    empresa.cnpj = inputCNPJEmpresa === null || inputCNPJEmpresa === void 0 ? void 0 : inputCNPJEmpresa.value;
-    //Coletando o CEP e adicionando na instancia
-    const inputCEPEmpresa = document.getElementById('cep-empresa');
-    empresa.cep = inputCEPEmpresa === null || inputCEPEmpresa === void 0 ? void 0 : inputCEPEmpresa.value;
+    //Coleta o nome da empresa
+    const inputNomeEmpresa = document.getElementById('inputName');
+    empresa.nome = inputNomeEmpresa.value; //Não há necessidade de validar com RegEx tendo em vista que algumas empresas possuem nome com caracteres especiais
+    //Coleta o email coorporativo
+    const inputEmailEmpresa = document.getElementById('inputEmail');
+    const emailEmpresa = inputEmailEmpresa.value;
+    //Coleta o cnpj
+    const inputCNPJEmpresa = document.getElementById('inputCNPJ');
+    const CNPJEmpresa = inputCNPJEmpresa.value;
+    //Coleta a cidade 
+    const inputCidadeEmpresa = document.getElementById('inputCidade');
+    const cidadeEmpresa = inputCidadeEmpresa.value;
+    //Coleta o CEP
+    const inputCEPEmpresa = document.getElementById('inputCEP');
+    const CEPempresa = inputCEPEmpresa.value;
     //Coletando o Estado e adicionando na instancia
-    const inputEstadoEmpresa = document.getElementById('estado-empresa');
-    empresa.estado = inputEstadoEmpresa === null || inputEstadoEmpresa === void 0 ? void 0 : inputEstadoEmpresa.value;
-    //Coletando o e-mail e adicionado na instancia 
-    const inputEmailEmpresa = document.getElementById('email-empresa');
-    empresa.email_corporativo = inputEmailEmpresa === null || inputEmailEmpresa === void 0 ? void 0 : inputEmailEmpresa.value;
+    const inputEstadoCandidato = document.getElementById('inputEstado');
+    empresa.estado = inputEstadoCandidato.value;
+    //Coletando as competências 
+    var element = document.getElementById("pythonCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
+    var element = document.getElementById("javaCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
+    var element = document.getElementById("springCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
+    var element = document.getElementById("angularCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
+    var element = document.getElementById("swiftCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
+    var element = document.getElementById("kotlinCheckbox");
+    if (element.checked) {
+        empresa.competencias.push(element.value);
+    }
     //Coletando a descrição e adicionado na instancia 
-    const inputDescricaoEmpresa = document.getElementById('descricao-empresa');
-    empresa.descricao = inputDescricaoEmpresa === null || inputDescricaoEmpresa === void 0 ? void 0 : inputDescricaoEmpresa.value;
-    //Adiciona o candidato instânciado na lista de candidatos
-    listaEmpresas.push(empresa);
-    window.location.assign('../pages/pagina-empresa.html');
+    const inputDescricaoCandidato = document.getElementById('descricaoCandidato');
+    empresa.descricao = inputDescricaoCandidato === null || inputDescricaoCandidato === void 0 ? void 0 : inputDescricaoCandidato.value;
+    if (validaEmail(emailEmpresa) && validaCNPJ(CNPJEmpresa) && validaCidade(cidadeEmpresa) && validaCEP(CEPempresa)) {
+        empresa.cnpj = CNPJEmpresa;
+        empresa.email_corporativo = emailEmpresa;
+        empresa.cidade = cidadeEmpresa;
+        empresa.cep = CEPempresa;
+        listaEmpresas.push(empresa);
+        window.location.assign('../pages/pagina-empresa.html');
+    }
     console.log(empresa);
     console.log(listaEmpresas);
-    console.log('submeteu');
 });
 //---GERADORES DE HTML--- 
 //Gerador de empresas na página de candidatos 

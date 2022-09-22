@@ -15,6 +15,7 @@ class Candidato{
 class Empresa{ 
   nome: String = ''
   email_corporativo: String = ''
+  cidade: string = ''
   estado: String = ''
   cnpj: String = ''
   cep: String = ''
@@ -95,7 +96,8 @@ function geraEmpresa (){
   e1.nome = 'Apple'
   e1.email_corporativo = 'jobs@apple.com'
   e1.cnpj='00.000.0001/00'
-  e1.estado = 'CA'
+  e1.cidade = 'Campinas'
+  e1.estado = 'SP'
   e1.cep = '123123123'
   e1.descricao = 'One more thing...'
   e1.competencias = ['Java','Spring Framework','Angular','Kotlin']
@@ -105,6 +107,7 @@ function geraEmpresa (){
   e2.nome = 'ZG Soluções'
   e2.email_corporativo = 'jobs@zg.com'
   e2.cnpj='00.000.0001/00'
+  e2.cidade = 'Goiânia'
   e2.estado = 'GO'
   e2.cep = '123123123'
   e2.descricao = 'Solucionando'
@@ -115,6 +118,7 @@ function geraEmpresa (){
   e3.nome = 'Amazon'
   e3.email_corporativo = 'jobs@amazon.com'
   e3.cnpj='00.000.0001/00'
+  e3.cnpj = 'São Paulo'
   e3.estado = 'SP'
   e3.cep = '123123123'
   e3.descricao = "Jeff Bezzos' little childs"
@@ -125,7 +129,8 @@ function geraEmpresa (){
   e4.nome = 'Roystar Royco'
   e4.email_corporativo = 'jobs@roystar.com'
   e4.cnpj='00.000.0001/00'
-  e4.estado = 'USA'
+  e4.cidade = 'Porto Alegre'
+  e4.estado = 'RS'
   e4.cep = '123123123'
   e4.descricao = 'Mantendo em família'
   e4.competencias = ['Python','Java','Spring Framework','Angular','Swift','Kotlin']
@@ -135,6 +140,7 @@ function geraEmpresa (){
   e5.nome = 'Nubank'
   e5.email_corporativo = 'jobs@nubank.com'
   e5.cnpj='00.000.0001/00'
+  e5.cidade = 'São Paulo'
   e5.estado = 'SP'
   e5.cep = '123123123'
   e5.descricao = 'Pensando roxo'
@@ -145,7 +151,7 @@ function geraEmpresa (){
 //--FUNÇÕES--
 //Função que valida o nome do candidato.
 function validaNome(nome: string): boolean{
-  let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+  let regexNome: RegExp =  /^([a-zA-Zà-úÀ-Ú0-9]|-|_|\s)+$/gi //Regex que valida se o nome está inserido corretamente. 
     if(regexNome.test(nome))
     {
       return true//Caso seja válido, o sistema irá retornar true
@@ -195,15 +201,27 @@ function validaEmail(email: string): boolean{
 }
 //Função que valida cidade.
 function validaCidade(cidade: string):boolean{
-  let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+  let regexNome: RegExp =  /^([a-zA-Zà-úÀ-Ú0-9]|-|_|\s)+$/gi //Regex que valida se o nome da cidade está inserido corretamente. 
     if(regexNome.test(cidade))
     {
       return true//Caso seja válido, o sistema irá retornar true
     }
     else{
-      window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+      window.alert('Cidade Incorreta!')//Caso esteja incorreto, o sistema notificará o usuário.
       return false // E retornarar false
     }
+}
+//Função que valida CNPJ
+function validaCNPJ(cnpj: string):boolean{
+  let regexCNPJ: RegExp = /^\d{2}\d{3}\d{3}\d{4}\d{2}$/gi
+  if(regexCNPJ.test(cnpj))
+  {
+    return true
+  }
+  else{
+    window.alert('CPNJ Inválido!')
+    return false
+  }
 }
 
 //---BOTÕES---
@@ -255,7 +273,6 @@ submitCandidato?.addEventListener('click', function handleClick(event){
     const inputEmailCandidato = document.getElementById('inputEmail') as HTMLInputElement;
     const emailCandidato = inputEmailCandidato.value
 
-
     //Coletando a descrição e adicionado na instancia 
     const inputDescricaoCandidato = document.getElementById('descricaoCandidato') as HTMLInputElement;
     candidato.descricao = inputDescricaoCandidato?.value
@@ -294,7 +311,8 @@ submitCandidato?.addEventListener('click', function handleClick(event){
     candidato.email = emailCandidato;
     candidato.cidade = cidadeCandidato;
     listaCandidatos.push(candidato);
-    console.log('Submeteu o Candidato!'); 
+    console.log('Submeteu o Candidato!');
+    window.location.assign('../pages/pagina-candidato.html');
     }
     //Redireciona o candidato para a próxima página
     console.log(candidato);
@@ -302,42 +320,75 @@ submitCandidato?.addEventListener('click', function handleClick(event){
 });
 
 //Botão para submeter uma nova Empresa
-const submitEmpresa = document.getElementById('botao-cadastrar-empresa')
+const submitEmpresa = document.getElementById('inputEmpresa')
 submitEmpresa?.addEventListener('click', function handleClick(event){
     //Instancia um candidato para setarmos os atributos 
     let empresa = new Empresa;
 
-    //Coletando o nome e adicionando na instância de Candidato
-    const inputNomeEmpresa = document.getElementById('nome-empresa') as HTMLInputElement;
-    empresa.nome = inputNomeEmpresa?.value
+    //Coleta o nome da empresa
+    const inputNomeEmpresa = document.getElementById('inputName') as HTMLInputElement
+    empresa.nome = inputNomeEmpresa.value //Não há necessidade de validar com RegEx tendo em vista que algumas empresas possuem nome com caracteres especiais
 
-    //Coletando o CPF e adicionando na instancia
-    const inputCNPJEmpresa = document.getElementById('cnpj-empresa') as HTMLInputElement;
-    empresa.cnpj = inputCNPJEmpresa?.value
+    //Coleta o email coorporativo
+    const inputEmailEmpresa = document.getElementById('inputEmail') as HTMLInputElement
+    const emailEmpresa = inputEmailEmpresa.value
 
-    //Coletando o CEP e adicionando na instancia
-    const inputCEPEmpresa = document.getElementById('cep-empresa') as HTMLInputElement;
-    empresa.cep = inputCEPEmpresa?.value
+    //Coleta o cnpj
+    const inputCNPJEmpresa = document.getElementById('inputCNPJ') as HTMLInputElement
+    const CNPJEmpresa = inputCNPJEmpresa.value
+
+    //Coleta a cidade 
+    const inputCidadeEmpresa = document.getElementById('inputCidade') as HTMLInputElement
+    const cidadeEmpresa = inputCidadeEmpresa.value
+
+    //Coleta o CEP
+    const inputCEPEmpresa = document.getElementById('inputCEP') as HTMLInputElement
+    const CEPempresa = inputCEPEmpresa.value
 
     //Coletando o Estado e adicionando na instancia
-    const inputEstadoEmpresa = document.getElementById('estado-empresa') as HTMLInputElement;
-    empresa.estado = inputEstadoEmpresa?.value
+    const inputEstadoCandidato = document.getElementById('inputEstado') as HTMLInputElement;
+    empresa.estado = inputEstadoCandidato.value
 
-    //Coletando o e-mail e adicionado na instancia 
-    const inputEmailEmpresa = document.getElementById('email-empresa') as HTMLInputElement;
-    empresa.email_corporativo = inputEmailEmpresa?.value
+    //Coletando as competências 
+    var element = <HTMLInputElement> document.getElementById("pythonCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("javaCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("springCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("angularCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("swiftCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("kotlinCheckbox");
+    if (element.checked){
+      empresa.competencias.push(element.value)
+    }
 
     //Coletando a descrição e adicionado na instancia 
-    const inputDescricaoEmpresa = document.getElementById('descricao-empresa') as HTMLInputElement;
-    empresa.descricao = inputDescricaoEmpresa?.value
-    
+    const inputDescricaoCandidato = document.getElementById('descricaoCandidato') as HTMLInputElement;
+    empresa.descricao = inputDescricaoCandidato?.value
 
-    //Adiciona o candidato instânciado na lista de candidatos
-    listaEmpresas.push(empresa);
-    window.location.assign('../pages/pagina-empresa.html');
-    console.log(empresa);
+    if(validaEmail(emailEmpresa)&&validaCNPJ(CNPJEmpresa)&&validaCidade(cidadeEmpresa)&&validaCEP(CEPempresa)){
+      empresa.cnpj = CNPJEmpresa
+      empresa.email_corporativo = emailEmpresa
+      empresa.cidade = cidadeEmpresa
+      empresa.cep = CEPempresa
+      listaEmpresas.push(empresa)
+      window.location.assign('../pages/pagina-empresa.html');
+    }
+    console.log(empresa)
     console.log(listaEmpresas)
-    console.log('submeteu'); 
 });
 
 //---GERADORES DE HTML--- 
