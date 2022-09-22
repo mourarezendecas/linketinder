@@ -135,6 +135,18 @@ function geraEmpresa() {
     e5.competencias = ['Swift', 'Kotlin'];
     listaEmpresas.push(e5);
 }
+//--FUNÇÕES--
+//Função que valida o nome do candidato.
+function validaNome(nome) {
+    let regexNome = /^[a-z ,.'-]+$/gi; //Regex que valida se o nome está inserido corretamente. 
+    if (regexNome.test(nome)) {
+        return true; //Caso seja válido, o sistema irá retornar true
+    }
+    else {
+        window.alert('Nome incorreto!'); //Caso esteja incorreto, o sistema notificará o usuário.
+        return false; // E retornarar false
+    }
+}
 //---BOTÕES---
 //Botão para ir para a área de Cadastro de Candidato
 const gotoCadastroCandidato = document.getElementById('button_candidato');
@@ -149,40 +161,94 @@ gotoCadastroEmpresa === null || gotoCadastroEmpresa === void 0 ? void 0 : gotoCa
     window.location.assign('../pages/cadastro-empresa.html');
 });
 //Botão para submeter um novo Candidato
-const submitCandidato = document.getElementById('botao-cadastrar-candidato');
+const submitCandidato = document.getElementById('inputCandidato');
 submitCandidato === null || submitCandidato === void 0 ? void 0 : submitCandidato.addEventListener('click', function handleClick(event) {
     //Instancia um candidato para setarmos os atributos 
     let candidato = new Candidato;
     //Coletando o nome e adicionando na instância de Candidato
-    const inputNomeCandidato = document.getElementById('nome-candidato');
-    candidato.nome = inputNomeCandidato === null || inputNomeCandidato === void 0 ? void 0 : inputNomeCandidato.value;
+    const inputNomeCandidato = document.getElementById('inputName');
+    const nomeCandidato = inputNomeCandidato.value;
+    //Testando o input do nome com RegEx
+    // let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+    // if(regexNome.test(inputNomeCandidato.value))
+    // {
+    //   candidato.nome = inputNomeCandidato?.value//Caso seja válido, o sistema irá adicionar o nome do candidato no objeto instanciado.
+    // }
+    // else{
+    //   window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+    // }
     //Coletando o CPF e adicionando na instancia
-    const inputCPFCandidato = document.getElementById('cpf-candidato');
-    candidato.cpf = inputCPFCandidato === null || inputCPFCandidato === void 0 ? void 0 : inputCPFCandidato.value;
+    const inputCPFCandidato = document.getElementById('inputCPF');
+    //Testando o input do CPF com RegEx
+    let regexCPF = /\d{3}\d{3}\d{3}\d{2}/gi;
+    if (regexCPF.test(inputCPFCandidato.value)) {
+        candidato.cpf = inputCPFCandidato === null || inputCPFCandidato === void 0 ? void 0 : inputCPFCandidato.value; //Caso seja válido, o sistema irá adicionar o CPF do candidato no objeto instanciado.
+    }
+    else {
+        window.alert('CPF Incorreto!'); //Caso esteja incorreto, o sistema notificará o usuário.
+    }
     //Coletando a data de nasc. e adicionando na instancia - Corrigir isso depois
-    const inputIdade = document.getElementById('idade-candidato');
+    const inputIdade = document.getElementById('inputIdade');
     candidato.idade = inputIdade === null || inputIdade === void 0 ? void 0 : inputIdade.value;
     //Coletando o CEP e adicionando na instancia
-    const inputCEPCandidato = document.getElementById('cep-candidato');
-    candidato.cep = inputCEPCandidato === null || inputCEPCandidato === void 0 ? void 0 : inputCEPCandidato.value;
+    const inputCEPCandidato = document.getElementById('inputCEP');
+    let regexCEP = /^[0-9]{5}-?[0-9]{3}$/gi;
+    if (regexCEP.test(inputCEPCandidato.value)) {
+        candidato.cep = inputCEPCandidato.value; //Caso seja válido, o sistema irá adicionar o CEP do candidato no objeto instanciado.
+    }
+    else {
+        window.alert('CEP Incorreto!'); //Caso esteja incorreto, o sistema notificará o usuário.
+    }
     //Coletando o Estado e adicionando na instancia
-    const inputEstadoCandidato = document.getElementById('estado-candidato');
+    const inputEstadoCandidato = document.getElementById('inputEstado');
     candidato.estado = inputEstadoCandidato === null || inputEstadoCandidato === void 0 ? void 0 : inputEstadoCandidato.value;
     //Coletando o e-mail e adicionado na instancia 
-    const inputEmailCandidato = document.getElementById('email-candidato');
-    candidato.email = inputEmailCandidato === null || inputEmailCandidato === void 0 ? void 0 : inputEmailCandidato.value;
+    const inputEmailCandidato = document.getElementById('inputEmail');
+    let regexEmail = /\S+@\w+\.\w{2,6}(\.\w{2})?/gi; //RegEx te validação do email
+    if (regexEmail.test(inputEmailCandidato.value)) {
+        candidato.email = inputEmailCandidato.value; //Caso seja válido, o sistema adiciona o email à instância criada
+    }
+    else {
+        window.alert('Email incorreto!'); //Caso negativa, o sistema apresenta uma mensagem de erro.
+    }
     //Coletando a descrição e adicionado na instancia 
-    const inputDescricaoCandidato = document.getElementById('descricao-candidato');
+    const inputDescricaoCandidato = document.getElementById('descricaoCandidato');
     candidato.descricao = inputDescricaoCandidato === null || inputDescricaoCandidato === void 0 ? void 0 : inputDescricaoCandidato.value;
     //Coletando as competências 
+    var element = document.getElementById("pythonCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
+    var element = document.getElementById("javaCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
+    var element = document.getElementById("springCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
+    var element = document.getElementById("angularCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
+    var element = document.getElementById("swiftCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
+    var element = document.getElementById("kotlinCheckbox");
+    if (element.checked) {
+        candidato.competencias.push(element.value);
+    }
     //Adiciona o candidato instânciado na lista de candidatos
-    listaCandidatos.push(candidato);
-    localStorage;
+    if (validaNome(nomeCandidato)) {
+        console.log('Sucesso');
+        candidato.nome = nomeCandidato;
+        listaCandidatos.push(candidato);
+    }
     //Redireciona o candidato para a próxima página
-    window.location.assign('../pages/pagina-candidato.html');
     console.log(candidato);
     console.log(listaCandidatos);
-    console.log('submeteu');
+    console.log('Submeteu o Candidato!');
 });
 //Botão para submeter uma nova Empresa
 const submitEmpresa = document.getElementById('botao-cadastrar-empresa');

@@ -141,6 +141,21 @@ function geraEmpresa (){
   listaEmpresas.push(e5)
 }
 
+//--FUNÇÕES--
+//Função que valida o nome do candidato.
+function validaNome(nome: string): boolean{
+  let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+    if(regexNome.test(nome))
+    {
+      return true//Caso seja válido, o sistema irá retornar true
+    }
+    else{
+      window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+      return false // E retornarar false
+    }
+}
+
+
 //---BOTÕES---
 //Botão para ir para a área de Cadastro de Candidato
 const gotoCadastroCandidato = document.getElementById('button_candidato');
@@ -157,51 +172,105 @@ gotoCadastroEmpresa?.addEventListener('click', function handleClick(event) {
 });
 
 //Botão para submeter um novo Candidato
-const submitCandidato = document.getElementById('botao-cadastrar-candidato')
+const submitCandidato = document.getElementById('inputCandidato')
 submitCandidato?.addEventListener('click', function handleClick(event){
     //Instancia um candidato para setarmos os atributos 
     let candidato = new Candidato;
-
     //Coletando o nome e adicionando na instância de Candidato
-    const inputNomeCandidato = document.getElementById('nome-candidato') as HTMLInputElement;
-    candidato.nome = inputNomeCandidato?.value
+    const inputNomeCandidato = document.getElementById('inputName') as HTMLInputElement;
+    const nomeCandidato = inputNomeCandidato.value
+    //Testando o input do nome com RegEx
+    // let regexNome: RegExp =  /^[a-z ,.'-]+$/gi //Regex que valida se o nome está inserido corretamente. 
+    // if(regexNome.test(inputNomeCandidato.value))
+    // {
+    //   candidato.nome = inputNomeCandidato?.value//Caso seja válido, o sistema irá adicionar o nome do candidato no objeto instanciado.
+    // }
+    // else{
+    //   window.alert('Nome incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+    // }
 
     //Coletando o CPF e adicionando na instancia
-    const inputCPFCandidato = document.getElementById('cpf-candidato') as HTMLInputElement;
-    candidato.cpf = inputCPFCandidato?.value
+    const inputCPFCandidato = document.getElementById('inputCPF') as HTMLInputElement;
+    //Testando o input do CPF com RegEx
+    let regexCPF: RegExp = /\d{3}\d{3}\d{3}\d{2}/gi
+    if(regexCPF.test(inputCPFCandidato.value))
+    {
+      candidato.cpf = inputCPFCandidato?.value//Caso seja válido, o sistema irá adicionar o CPF do candidato no objeto instanciado.
+    }
+    else{
+      window.alert('CPF Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+    }
 
     //Coletando a data de nasc. e adicionando na instancia - Corrigir isso depois
-    const inputIdade = document.getElementById('idade-candidato') as HTMLInputElement;
+    const inputIdade = document.getElementById('inputIdade') as HTMLInputElement;
     candidato.idade = inputIdade?.value
 
     //Coletando o CEP e adicionando na instancia
-    const inputCEPCandidato = document.getElementById('cep-candidato') as HTMLInputElement;
-    candidato.cep = inputCEPCandidato?.value
+    const inputCEPCandidato = document.getElementById('inputCEP') as HTMLInputElement;
+    let regexCEP: RegExp = /^[0-9]{5}-?[0-9]{3}$/gi
+    if(regexCEP.test(inputCEPCandidato.value))
+    {
+      candidato.cep = inputCEPCandidato.value//Caso seja válido, o sistema irá adicionar o CEP do candidato no objeto instanciado.
+    }
+    else{
+      window.alert('CEP Incorreto!')//Caso esteja incorreto, o sistema notificará o usuário.
+    }
 
     //Coletando o Estado e adicionando na instancia
-    const inputEstadoCandidato = document.getElementById('estado-candidato') as HTMLInputElement;
+    const inputEstadoCandidato = document.getElementById('inputEstado') as HTMLInputElement;
     candidato.estado = inputEstadoCandidato?.value
 
     //Coletando o e-mail e adicionado na instancia 
-    const inputEmailCandidato = document.getElementById('email-candidato') as HTMLInputElement;
-    candidato.email = inputEmailCandidato?.value
+    const inputEmailCandidato = document.getElementById('inputEmail') as HTMLInputElement;
+  let regexEmail: RegExp = /\S+@\w+\.\w{2,6}(\.\w{2})?/gi //RegEx te validação do email
+   if(regexEmail.test(inputEmailCandidato.value))
+   {
+    candidato.email = inputEmailCandidato.value //Caso seja válido, o sistema adiciona o email à instância criada
+   }   
+   else{
+    window.alert('Email incorreto!') //Caso negativa, o sistema apresenta uma mensagem de erro.
+   }
 
     //Coletando a descrição e adicionado na instancia 
-    const inputDescricaoCandidato = document.getElementById('descricao-candidato') as HTMLInputElement;
+    const inputDescricaoCandidato = document.getElementById('descricaoCandidato') as HTMLInputElement;
     candidato.descricao = inputDescricaoCandidato?.value
     
     //Coletando as competências 
-    
-
+    var element = <HTMLInputElement> document.getElementById("pythonCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("javaCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("springCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("angularCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("swiftCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
+    var element = <HTMLInputElement> document.getElementById("kotlinCheckbox");
+    if (element.checked){
+      candidato.competencias.push(element.value)
+    }
 
     //Adiciona o candidato instânciado na lista de candidatos
+    if(validaNome(nomeCandidato)){
+    console.log('Sucesso')
+    candidato.nome = nomeCandidato;
     listaCandidatos.push(candidato);
-    localStorage
+    }
     //Redireciona o candidato para a próxima página
-    window.location.assign('../pages/pagina-candidato.html');
     console.log(candidato);
-    console.log(listaCandidatos)
-    console.log('submeteu'); 
+    console.log(listaCandidatos);
+    console.log('Submeteu o Candidato!'); 
 });
 
 //Botão para submeter uma nova Empresa
