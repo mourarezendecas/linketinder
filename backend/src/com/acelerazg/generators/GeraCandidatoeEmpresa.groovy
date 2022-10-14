@@ -1,7 +1,7 @@
 package com.acelerazg.generators
 
-import com.acelera.classes.Candidato
-import com.acelera.classes.Empresa
+import com.acelerazg.classes.Candidato
+import com.acelerazg.classes.Empresa
 
 class GeraCandidatoeEmpresa {
    static ArrayList Candidatos = []

@@ -1,8 +1,8 @@
 package com.acelerazg.main
 
-import com.acelera.classes.Candidato
-import com.acelera.classes.Empresa
-import com.acelera.generators.GeraCandidatoeEmpresa
+import com.acelerazg.classes.Candidato
+import com.acelerazg.classes.Empresa
+import com.acelerazg.generators.GeraCandidatoeEmpresa
 
 class Curtidas {
     static def void main(){

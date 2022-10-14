@@ -1,6 +1,6 @@
 package com.acelerazg.generators
 
-import com.acelera.classes.Candidato
+import com.acelerazg.classes.Candidato
 
 //String nome, email, CPF, estado, CEP, descPessoal
 //String Python, Java, Spring Framework, Angular, Swift, Kotlin

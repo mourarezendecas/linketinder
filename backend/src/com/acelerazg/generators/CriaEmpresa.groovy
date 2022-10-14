@@ -1,5 +1,5 @@
 package com.acelerazg.generators
-import com.acelera.classes.Empresa
+import com.acelerazg.classes.Empresa
 
 //String nome, email, CNPJ, pais, estado, CEP, descricao;
 
