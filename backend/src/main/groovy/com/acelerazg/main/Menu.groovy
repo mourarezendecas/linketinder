@@ -1,6 +1,7 @@
 package com.acelerazg.main
 
 import com.acelerazg.database.crudCandidato
+import com.acelerazg.database.crudEmpresa
 
 class Menu {
     def initialpage(){
@@ -35,11 +36,25 @@ class Menu {
                 crudCandidato.cadastracandidato()
                 initialpage()
                 break
+            case 2:
+                //CADASTRAR EMPRESA
+                println('INITIALIZING SERVER')
+                println()
+                crudEmpresa.cadastraEmpresa()
+                initialpage()
+                break
             case 4:
-                //LISTAR CANDIDATO
+                //LISTAR CANDIDATOS
                 println('INITIALIZING SERVER')
                 println()
                 crudCandidato.listaCandidato()
+                initialpage()
+                break
+            case 5:
+                //LISTAR EMPRESAS
+                println('INITIALIZING SERVER')
+                println()
+                crudEmpresa.listaEmpresa()
                 initialpage()
                 break
             case 7:
@@ -48,11 +63,24 @@ class Menu {
                 println()
                 crudCandidato.atualizacandidato()
                 initialpage()
+            case 8:
+                //ATUALIZAR EMPRESA
+                println('INITIALIZING SERVER')
+                println()
+                crudEmpresa.atualizaEmpresa()
+                initialpage()
             case 10:
                 //DELETAR CANDIDATO
                 println ('INITIALIZING SERVER')
                 println()
                 crudCandidato.deletaCandidato()
+                initialpage()
+                break
+            case 11:
+                //DELETAR EMPRESA
+                println ('INITIALIZING SERVER')
+                println()
+                crudEmpresa.deletaEmpresa()
                 initialpage()
                 break
         }
