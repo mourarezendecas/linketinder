@@ -3,15 +3,14 @@ package com.acelerazg.database
 import com.acelerazg.classes.Candidato
 import groovy.sql.Sql
 
-
-
-class SqlFactory {
+class crudCandidato {
     static Map dbConnParams = [
             url: 'jdbc:postgresql://localhost:5432/linketinderdb',
             user: 'postgres',
             password: 'postgres',
             driver: 'org.postgresql.Driver']
 
+    //CREATE
     static def cadastracandidato(){
         Candidato c = new Candidato()
         println('---CADASTRO DE CANDIDATO---')
@@ -40,6 +39,7 @@ class SqlFactory {
         sql.close()
     }
 
+    //READ
     static def listaCandidato(){
         def sql = Sql.newInstance(dbConnParams)
         sql.eachRow("SELECT * FROM candidatos"){
@@ -57,6 +57,7 @@ class SqlFactory {
         sql.close()
     }
 
+    //UPDATE
     static def atualizacandidato(){
         def sql = Sql.newInstance(dbConnParams)
         println('SELECIONE O ID DO CANDIDATO QUE DESEJA ATUALIZAR: ')
@@ -142,10 +143,9 @@ class SqlFactory {
                 sqlupdate.close()
                 break
         }
-
-
     }
 
+    //DELETE
     static def deletaCandidato(){
         def sql = Sql.newInstance(dbConnParams)
         println('SELECIONE O ID DO CANDIDATO QUE DESEJA DELETAR: ')
@@ -166,12 +166,4 @@ class SqlFactory {
         println('EXCLUIDO!')
         sqldelete.close()
     }
-
-    static def criaEmpresa(){
-        def sql = Sql.newInstance(dbConnParams)
-
-        sql.close()
-    }
-
 }
-

@@ -1,7 +1,6 @@
 package com.acelerazg.main
 
-import com.acelerazg.database.SqlFactory
-import groovy.sql.Sql
+import com.acelerazg.database.crudCandidato
 
 class Menu {
     def initialpage(){
@@ -33,27 +32,27 @@ class Menu {
                 //CADASTRAR CANDIDATO
                 println('INITIALIZING SERVER')
                 println()
-                SqlFactory.cadastracandidato()
+                crudCandidato.cadastracandidato()
                 initialpage()
                 break
             case 4:
                 //LISTAR CANDIDATO
                 println('INITIALIZING SERVER')
                 println()
-                SqlFactory.listaCandidato()
+                crudCandidato.listaCandidato()
                 initialpage()
                 break
             case 7:
                 //ATUALIZAR CANDIDATO
                 println('INITIALIZING SERVER')
                 println()
-                SqlFactory.atualizacandidato()
+                crudCandidato.atualizacandidato()
                 initialpage()
             case 10:
                 //DELETAR CANDIDATO
                 println ('INITIALIZING SERVER')
                 println()
-                SqlFactory.deletaCandidato()
+                crudCandidato.deletaCandidato()
                 initialpage()
                 break
         }
