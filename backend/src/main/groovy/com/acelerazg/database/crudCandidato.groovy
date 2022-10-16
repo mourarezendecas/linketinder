@@ -33,9 +33,7 @@ class crudCandidato {
 
         List<String> atributos = [c.nome, c.data_nasc, c.cpf, c.email, c.pais, c.cep, c.descricao, c.senha]
         def sql = Sql.newInstance(dbConnParams)
-
         sql.executeInsert('INSERT INTO candidatos (nome_candidato, data_nascimento, cpf, email_candidato, pais_candidato, cep_candidato, descricao_candidato, senha_candidato) VALUES (?,?,?,?,?,?,?,?)', atributos)
-
         sql.close()
     }
 

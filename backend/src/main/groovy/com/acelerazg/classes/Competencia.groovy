@@ -1,5 +1,5 @@
 package com.acelerazg.classes
 
-class Competencias {
+class Competencia {
     String competencia
 }
