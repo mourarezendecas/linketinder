@@ -54,4 +54,4 @@ Tendo em vista o prazo de entrega da sprint, eu preferi fazer a entrega mínima 
 O arquivo SQL de criação do banco de dados se encontra [aqui](https://github.com/mourarezendecas/linketinder/tree/master/backend/database). 
 
 O arquivo MER/DER foi criado no site https://dbdiagram.io
-![](https://github.com/mourarezendecas/linketinder/blob/master/imgs/LINKETINDER.png?raw=true)
+![LINKETINDER ](https://user-images.githubusercontent.com/46174954/196013477-080c74f3-8b8b-44b4-a959-865bac0ac218.png)
