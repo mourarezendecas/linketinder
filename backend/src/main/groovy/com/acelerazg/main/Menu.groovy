@@ -22,7 +22,7 @@ class Menu {
         println "13 - CURTIR CANDIDATOS OU EMPRESAS"
         println "14 - SAIR"
         printf "Escolha a opção: "
-        def opt = System.in.newReader().readLine() as Integer
+        Integer opt = System.in.newReader().readLine() as Integer
         switchMenu(opt)
     }
 
@@ -31,83 +31,47 @@ class Menu {
         switch(opt)
         {
             case 1:
-                //CADASTRAR CANDIDATO
-                println('INITIALIZING SERVER')
-                println()
                 crudCandidato.cadastracandidato()
                 initialpage()
                 break
             case 2:
-                //CADASTRAR EMPRESA
-                println('INITIALIZING SERVER')
-                println()
                 crudEmpresa.cadastraEmpresa()
                 initialpage()
                 break
             case 3:
-                //CADASTRAR VAGA
-                println('INITIALIZING SERVER')
-                println()
                 crudVaga.cadastraVaga()
                 initialpage()
                 break
             case 4:
-                //LISTAR CANDIDATOS
-                println('INITIALIZING SERVER')
-                println()
                 crudCandidato.listaCandidato()
                 initialpage()
                 break
             case 5:
-                //LISTAR EMPRESAS
-                println('INITIALIZING SERVER')
-                println()
                 crudEmpresa.listaEmpresa()
                 initialpage()
                 break
             case 6:
-                //LISTAR VAGAS
-                println('INITIALIZING SERVER')
-                println()
                 crudVaga.listaVagas()
                 initialpage()
                 break
             case 7:
-                //ATUALIZAR CANDIDATO
-                println('INITIALIZING SERVER')
-                println()
                 crudCandidato.atualizacandidato()
                 initialpage()
             case 8:
-                //ATUALIZAR EMPRESA
-                println('INITIALIZING SERVER')
-                println()
                 crudEmpresa.atualizaEmpresa()
                 initialpage()
             case 9:
-                //ATUALIZAR VAGA
-                println('INITIALIZING SERVER')
-                println()
                 crudVaga.atualizaVagas()
                 initialpage()
             case 10:
-                //DELETAR CANDIDATO
-                println ('INITIALIZING SERVER')
-                println()
                 crudCandidato.deletaCandidato()
                 initialpage()
                 break
             case 11:
-                //DELETAR EMPRESA
-                println ('INITIALIZING SERVER')
-                println()
                 crudEmpresa.deletaEmpresa()
                 initialpage()
                 break
             case 12:
-                //DELETAR VAGA
-                println ('INITIALIZING SERVER')
-                println()
                 crudVaga.deletaVagas()
                 initialpage()
                 break
