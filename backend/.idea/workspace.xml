@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14e76a8-0a6d-45b0-af3d-e9927833ced5" name="Changes" comment="Limpando o código" />
+    <list default="true" id="b14e76a8-0a6d-45b0-af3d-e9927833ced5" name="Changes" comment="Update SOLID">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Candidato.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Candidato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Candidato.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Candidato.groovy" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,11 +27,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2GbEDWJLKkZ116kMCEWywjsqn2c" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,7 +78,7 @@
       <updated>1666648763866</updated>
       <workItem from="1666648766368" duration="5116000" />
       <workItem from="1666740563811" duration="35000" />
-      <workItem from="1666960152595" duration="746000" />
+      <workItem from="1666960152595" duration="1621000" />
     </task>
     <task id="LOCAL-00001" summary="Limpando o código">
       <created>1666652709447</created>
@@ -73,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666652709447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update SOLID">
+      <created>1666961184089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666961184089</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +113,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Limpando o código" />
-    <option name="LAST_COMMIT_MESSAGE" value="Limpando o código" />
+    <MESSAGE value="Update SOLID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SOLID" />
   </component>
 </project>
