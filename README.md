@@ -12,7 +12,7 @@
 # <p align="center">Backend</p>
 
 ## Arquivo main
-O arquivo main se encontra no caminho: [linketinder/src/main/groovy/com/acelera/](https://github.com/mourarezendecas/linketinder/tree/master/src/main/groovy/com/acelera) e se chama Application.groovy
+O arquivo main se encontra no caminho: [linketinder/backend/src/main/groovy/com/acelerazg/main/]() e se chama Application.groovy
 
 ## Especificação do projeto 
 Um projeto proposto pelo programa AceleraZG, que visa colocar em prática todo o conteúdo adquirido e acumulado durante a nossa jornada.
