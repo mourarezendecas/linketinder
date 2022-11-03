@@ -1,4 +1,4 @@
-package com.acelerazg.database
+package com.acelerazg.Controller
 
 interface ICrud {
     void create()

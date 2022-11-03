@@ -1,65 +1,29 @@
-package com.acelerazg.database
+package com.acelerazg.DAO
 
-import com.acelerazg.classes.Candidato
+import com.acelerazg.Model.ModelCandidato
 import com.acelerazg.connection.IConnection
 import com.acelerazg.connection.PostgreConnection
 import groovy.sql.Sql
 
+import java.sql.SQLException
 
-class CandidatoCRUD implements ICrud{
+
+class DAOCandidato {
     IConnection postgreConnection = new PostgreConnection()
     Map dbConnParams = postgreConnection.Connection()
 
-    @Override
-    void create() {
-        Candidato c = new Candidato()
-        println('---CADASTRO DE CANDIDATO---')
-        printf('Digite o nome: ')
-        c.nome = (System.in.newReader().readLine())
-        printf('Digite a data de nascimento (AAAA-MM-DD): ')
-        c.data_nasc = (System.in.newReader().readLine())
-        printf('Digite o CPF: ')
-        c.cpf = (System.in.newReader().readLine())
-        printf('Digite o e-mail: ')
-        c.email = (System.in.newReader().readLine())
-        printf('Digite o país: ')
-        c.pais = (System.in.newReader().readLine())
-        printf('Digite o CEP: ')
-        c.cep = (System.in.newReader().readLine())
-        printf('Nos dê uma breve descrição: ')
-        c.descricao = (System.in.newReader().readLine())
-        printf('Informe a senha: ')
-        c.senha = (System.in.newReader().readLine())
-
-        List<String> atributos = [c.nome, c.data_nasc, c.cpf, c.email, c.pais, c.cep, c.descricao, c.senha]
-        def sql = Sql.newInstance(dbConnParams)
-        sql.executeInsert('INSERT INTO candidatos (nome_candidato, data_nascimento, cpf, email_candidato, pais_candidato, cep_candidato, descricao_candidato, senha_candidato) VALUES (?,?,?,?,?,?,?,?)', atributos)
-
-        sql.close()
+    void create(ModelCandidato candidato)
+    {
+            List<String> atributos = [candidato.nome, candidato.data_nasc, candidato.cpf, candidato.email, candidato.pais, candidato.cep, candidato.descricao, candidato.senha]
+            Sql sql = Sql.newInstance(dbConnParams)
+            sql.executeInsert('INSERT INTO candidatos (nome_candidato, data_nascimento, cpf, email_candidato, pais_candidato, cep_candidato, descricao_candidato, senha_candidato) VALUES (?,?,?,?,?,?,?,?)', atributos)
+            sql.close()
     }
 
-    @Override
-    void read() {
-        def sql = Sql.newInstance(dbConnParams)
-        sql.eachRow("SELECT * FROM candidatos"){
-            candidato ->
-                println('---ID DO CANDIDATO: ' + candidato.id_candidato + '---')
-                println('NOME: ' + candidato.nome_candidato)
-                println('DATA DE NASC.: ' + candidato.data_nascimento)
-                println('CPF: ' + candidato.cpf)
-                println('PAIS: ' + candidato.pais_candidato)
-                println('CEP: ' + candidato.cep_candidato)
-                println('EMAIL: '+ candidato.email_candidato)
-                println('DESCRIÇÃO: ' + candidato.descricao_candidato)
-                println()
-        }
-        sql.close()
-    }
 
-    @Override
-    void update() {
+    void update()
+    {
         println('SELECIONE O ID DO CANDIDATO QUE DESEJA ATUALIZAR: ')
-        read()
 
         printf('ID DO CANDIDATO: ')
         int idCandidatoEscolhido = (System.in.newReader().readLine() as Integer)
@@ -136,11 +100,7 @@ class CandidatoCRUD implements ICrud{
         }
     }
 
-    @Override
-    void delete() {
-        println('SELECIONE O ID DO CANDIDATO QUE DESEJA DELETAR: ')
-        read()
-
+    void delete(){
         printf('ID DO CANDIDATO: ')
         int choice = (System.in.newReader().readLine() as Integer)
 
@@ -149,4 +109,5 @@ class CandidatoCRUD implements ICrud{
         println('EXCLUIDO!')
         sqldelete.close()
     }
+
 }

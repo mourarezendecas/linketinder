@@ -1,9 +1,9 @@
 package com.acelerazg.main
 
-import com.acelerazg.database.CandidatoCRUD
-import com.acelerazg.database.EmpresaCRUD
-import com.acelerazg.database.ICrud
-import com.acelerazg.database.VagaCRUD
+import com.acelerazg.Controller.CandidatoCRUD
+import com.acelerazg.Controller.EmpresaCRUD
+import com.acelerazg.Controller.ICrud
+import com.acelerazg.Controller.VagaCRUD
 
 class Menu {
     ICrud candidatoCRUD = new CandidatoCRUD()

@@ -1,56 +1,22 @@
-package com.acelerazg.database
+package com.acelerazg.DAO
 
-import com.acelerazg.classes.Vaga
+import com.acelerazg.Model.ModelVaga
 import com.acelerazg.connection.IConnection
 import com.acelerazg.connection.PostgreConnection
 import groovy.sql.Sql
 
-class VagaCRUD implements ICrud{
-    EmpresaCRUD empresaCRUD = new EmpresaCRUD()
-
+class DAOVaga {
     IConnection postgreConnection = new PostgreConnection()
     Map dbConnParams = postgreConnection.Connection()
 
-    @Override
-    void create() {
-        Vaga v = new Vaga()
-        empresaCRUD.read()
-
-        printf('SELECIONE O ID DA EMPRESA RESPONSÁVEL PELA VAGA: ')
-        v.idEmpresa = (System.in.newReader().readLine() as Integer)
-        printf('Nome da vaga: ')
-        v.nome = (System.in.newReader().readLine())
-        printf('Descrição: ')
-        v.descricao = (System.in.newReader().readLine())
-        printf('Modalidade (Presencial ou Remoto): ')
-        v.modalidade = (System.in.newReader().readLine())
-
+    void create(ModelVaga v){
         List<String> atributos = [v.nome, v.descricao, v.modalidade]
-
         Sql sql = Sql.newInstance(dbConnParams)
         sql.executeInsert('INSERT INTO vagas (nome_vaga, descricao_vaga, modalidade_vaga) VALUES (?,?,?)', atributos)
         sql.close()
     }
 
-    @Override
-    void read() {
-        Sql sql = Sql.newInstance(dbConnParams)
-        sql.eachRow("SELECT * FROM vagas"){
-            vaga ->
-                println('---ID DA VAGA: ' + vaga.id_vaga + '---')
-                println('NOME: ' + vaga.nome_vaga)
-                println('DESCRIÇÃO: ' + vaga.descricao_vaga)
-                println('MODALIDADE: ' + vaga.modalidade_vaga)
-                println()
-        }
-        sql.close()
-    }
-
-    @Override
-    void update() {
-        println('SELECIONE O ID DA VAGA QUE DESEJA ATUALIZAR: ')
-        read()
-
+    void update(){
         printf('ID DA VAGA: ')
         int choice = (System.in.newReader().readLine() as Integer)
 
@@ -85,12 +51,8 @@ class VagaCRUD implements ICrud{
         }
     }
 
-    @Override
-    void delete() {
-        println('SELECIONE O ID DA VAGA QUE DESEJA DELETAR: ')
-        read()
-
-        printf('ID DO CANDIDATO: ')
+    void delete(){
+        printf('ID DA VAGA: ')
         int choice = (System.in.newReader().readLine() as Integer)
 
         def sqldelete = Sql.newInstance(dbConnParams)

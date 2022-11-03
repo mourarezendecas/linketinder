@@ -1,61 +1,22 @@
-package com.acelerazg.database
+package com.acelerazg.DAO
 
-import com.acelerazg.classes.Empresa
+import com.acelerazg.Model.ModelEmpresa
 import com.acelerazg.connection.IConnection
 import com.acelerazg.connection.PostgreConnection
 import groovy.sql.Sql
 
-class EmpresaCRUD implements ICrud{
+class DAOEmpresa {
     IConnection postgreConnection = new PostgreConnection()
     Map dbConnParams = postgreConnection.Connection()
 
-    @Override
-    void create() {
-        Empresa e = new Empresa()
-        println('---CADASTRO DE EMPRESA---')
-        printf('Digite o nome da empresa: ')
-        e.nome = (System.in.newReader().readLine())
-        printf('Digite o CNPJ: ')
-        e.cnpj = (System.in.newReader().readLine())
-        printf('Digite o e-mail corporativo: ')
-        e.email = (System.in.newReader().readLine())
-        printf('Digite o país: ')
-        e.pais = (System.in.newReader().readLine())
-        printf('Digite o CEP: ')
-        e.cep = (System.in.newReader().readLine())
-        printf('Nos dê uma breve descrição: ')
-        e.descricao = (System.in.newReader().readLine())
-        printf('Informe a senha: ')
-        e.senha = (System.in.newReader().readLine())
-
+    void create(ModelEmpresa e){
         List<String> atributos = [e.nome, e.cnpj, e.email, e.pais, e.cep, e.descricao, e.senha]
         Sql sql = Sql.newInstance(dbConnParams)
         sql.executeInsert('INSERT INTO empresas (nome_empresa, cnpj, email_empresa, pais_empresa, cep_empresa, descricao_empresa, senha_empresa) VALUES (?,?,?,?,?,?,?)', atributos)
         sql.close()
     }
 
-    @Override
-    void read() {
-        Sql sql = Sql.newInstance(dbConnParams)
-        sql.eachRow("SELECT * FROM empresas"){
-            empresa ->
-                println('---ID DA EMPRESA: ' + empresa.id_empresa + '---')
-                println('NOME: ' + empresa.nome_empresa)
-                println('CNPJ: ' + empresa.cnpj)
-                println('PAIS: ' + empresa.pais_empresa)
-                println('CEP: ' + empresa.cep_empresa)
-                println('EMAIL CORPORATIVO: '+ empresa.email_empresa)
-                println('DESCRIÇÃO: ' + empresa.descricao_empresa)
-                println()
-        }
-        sql.close()
-    }
-
-    @Override
-    void update() {
-        println('SELECIONE O ID DA EMPRESA QUE DESEJA ATUALIZAR: ')
-        read()
-
+    void update(){
         printf('ID DA EMPRESA: ')
         int choice = (System.in.newReader().readLine() as Integer)
 
@@ -123,11 +84,7 @@ class EmpresaCRUD implements ICrud{
         }
     }
 
-    @Override
-    void delete() {
-        println('SELECIONE O ID DA EMPRESA QUE DESEJA DELETAR: ')
-        read()
-
+    void delete(){
         printf('ID DA EMPRESA: ')
         int choice = (System.in.newReader().readLine() as Integer)
 

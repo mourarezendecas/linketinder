@@ -1,6 +1,6 @@
-package com.acelerazg.classes
+package com.acelerazg.Model
 
-class Vaga {
+class ModelVaga {
     String nome, descricao, modalidade
     int idEmpresa
 }
