@@ -1,17 +1,17 @@
 package com.acelerazg.database
 
 import com.acelerazg.classes.Candidato
+import com.acelerazg.connection.IConnection
+import com.acelerazg.connection.PostgreConnection
 import groovy.sql.Sql
 
-class crudCandidato {
-    static final Map dbConnParams = [
-            url: 'jdbc:postgresql://localhost:5432/linketinderdb',
-            user: 'postgres',
-            password: 'postgres',
-            driver: 'org.postgresql.Driver']
 
-    //CREATE
-    static def cadastracandidato(){
+class CandidatoCRUD implements ICrud{
+    IConnection postgreConnection = new PostgreConnection()
+    Map dbConnParams = postgreConnection.Connection()
+
+    @Override
+    void create() {
         Candidato c = new Candidato()
         println('---CADASTRO DE CANDIDATO---')
         printf('Digite o nome: ')
@@ -38,8 +38,8 @@ class crudCandidato {
         sql.close()
     }
 
-    //READ
-    static def listaCandidato(){
+    @Override
+    void read() {
         def sql = Sql.newInstance(dbConnParams)
         sql.eachRow("SELECT * FROM candidatos"){
             candidato ->
@@ -56,18 +56,10 @@ class crudCandidato {
         sql.close()
     }
 
-    //UPDATE
-    static def atualizacandidato(){
-        def sql = Sql.newInstance(dbConnParams)
+    @Override
+    void update() {
         println('SELECIONE O ID DO CANDIDATO QUE DESEJA ATUALIZAR: ')
-        println()
-        sql.eachRow("SELECT * FROM candidatos"){
-            candidato ->
-                println('---ID DO CANDIDATO: ' + candidato.id_candidato + '---')
-                println('NOME: ' + candidato.nome_candidato)
-                println()
-        }
-        sql.close()
+        read()
 
         printf('ID DO CANDIDATO: ')
         int idCandidatoEscolhido = (System.in.newReader().readLine() as Integer)
@@ -88,74 +80,66 @@ class crudCandidato {
             case 1:
                 printf('Digite o nome correto: ')
                 String novonome = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET nome_candidato = ? WHERE id_candidato = ?' ,novonome,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 2:
                 printf('Digite a data de nascimento correta: ')
                 String novadata = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET data_nascimento = ? WHERE id_candidato = ?' ,novadata,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 3:
                 printf('Digite o cpf correto: ')
                 String novocpf = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET cpf = ? WHERE id_candidato = ?' ,novocpf,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 4:
                 printf('Digite o e-mail correto: ')
                 String novoemail = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET email_candidato = ? WHERE id_candidato = ?' ,novoemail,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 5:
                 printf('Digite o país correto: ')
                 String novopais = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET pais_candidato = ? WHERE id_candidato = ?' ,novopais,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 6:
                 printf('Digite o CEP correto: ')
                 String novocep = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET cep_candidato = ? WHERE id_candidato = ?' ,novocep,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 7:
                 printf('Digite a nova descrição: ')
                 String novadescricao = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET descricao_candidato = ? WHERE id_candidato = ?' ,novadescricao,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
             case 8:
                 printf('Digite a nova senha: ')
                 String novasenha = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE candidatos SET senha_candidato = ? WHERE id_candidato = ?' ,novasenha,idCandidatoEscolhido)
                 sqlupdate.close()
                 break
         }
     }
 
-    //DELETE
-    static def deletaCandidato(){
-        def sql = Sql.newInstance(dbConnParams)
+    @Override
+    void delete() {
         println('SELECIONE O ID DO CANDIDATO QUE DESEJA DELETAR: ')
-        println()
-        sql.eachRow("SELECT * FROM candidatos"){
-            candidato ->
-                println('---ID DO CANDIDATO: ' + candidato.id_candidato + '---')
-                println('NOME: ' + candidato.nome_candidato)
-                println()
-        }
-        sql.close()
+        read()
 
         printf('ID DO CANDIDATO: ')
         int choice = (System.in.newReader().readLine() as Integer)

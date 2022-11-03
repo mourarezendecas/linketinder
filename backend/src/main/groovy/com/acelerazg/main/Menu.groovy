@@ -1,10 +1,15 @@
 package com.acelerazg.main
 
-import com.acelerazg.database.crudCandidato
-import com.acelerazg.database.crudEmpresa
-import com.acelerazg.database.crudVaga
+import com.acelerazg.database.CandidatoCRUD
+import com.acelerazg.database.EmpresaCRUD
+import com.acelerazg.database.ICrud
+import com.acelerazg.database.VagaCRUD
 
 class Menu {
+    ICrud candidatoCRUD = new CandidatoCRUD()
+    ICrud empresaCRUD = new EmpresaCRUD()
+    ICrud vagaCRUD = new VagaCRUD()
+
     def initialpage(){
         println('---LINKETINDER---')
         println "1 - CRIAR CANDIDATO"
@@ -31,48 +36,48 @@ class Menu {
         switch(opt)
         {
             case 1:
-                crudCandidato.cadastracandidato()
+                candidatoCRUD.create()
                 initialpage()
                 break
             case 2:
-                crudEmpresa.cadastraEmpresa()
+                empresaCRUD.create()
                 initialpage()
                 break
             case 3:
-                crudVaga.cadastraVaga()
+                vagaCRUD.create()
                 initialpage()
                 break
             case 4:
-                crudCandidato.listaCandidato()
+                candidatoCRUD.read()
                 initialpage()
                 break
             case 5:
-                crudEmpresa.listaEmpresa()
+                empresaCRUD.read()
                 initialpage()
                 break
             case 6:
-                crudVaga.listaVagas()
+                vagaCRUD.read()
                 initialpage()
                 break
             case 7:
-                crudCandidato.atualizacandidato()
+                candidatoCRUD.update()
                 initialpage()
             case 8:
-                crudEmpresa.atualizaEmpresa()
+                empresaCRUD.update()
                 initialpage()
             case 9:
-                crudVaga.atualizaVagas()
+                vagaCRUD.update()
                 initialpage()
             case 10:
-                crudCandidato.deletaCandidato()
+                candidatoCRUD.delete()
                 initialpage()
                 break
             case 11:
-                crudEmpresa.deletaEmpresa()
+                empresaCRUD.delete()
                 initialpage()
                 break
             case 12:
-                crudVaga.deletaVagas()
+                vagaCRUD.delete()
                 initialpage()
                 break
         }

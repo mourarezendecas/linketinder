@@ -1,16 +1,16 @@
 package com.acelerazg.database
 
-import groovy.sql.Sql
 import com.acelerazg.classes.Empresa
+import com.acelerazg.connection.IConnection
+import com.acelerazg.connection.PostgreConnection
+import groovy.sql.Sql
 
-class crudEmpresa {
-    static Map dbConnParams = [
-            url: 'jdbc:postgresql://localhost:5432/linketinderdb',
-            user: 'postgres',
-            password: 'postgres',
-            driver: 'org.postgresql.Driver']
-    //CREATE
-    static def cadastraEmpresa(){
+class EmpresaCRUD implements ICrud{
+    IConnection postgreConnection = new PostgreConnection()
+    Map dbConnParams = postgreConnection.Connection()
+
+    @Override
+    void create() {
         Empresa e = new Empresa()
         println('---CADASTRO DE EMPRESA---')
         printf('Digite o nome da empresa: ')
@@ -29,14 +29,14 @@ class crudEmpresa {
         e.senha = (System.in.newReader().readLine())
 
         List<String> atributos = [e.nome, e.cnpj, e.email, e.pais, e.cep, e.descricao, e.senha]
-        def sql = Sql.newInstance(dbConnParams)
+        Sql sql = Sql.newInstance(dbConnParams)
         sql.executeInsert('INSERT INTO empresas (nome_empresa, cnpj, email_empresa, pais_empresa, cep_empresa, descricao_empresa, senha_empresa) VALUES (?,?,?,?,?,?,?)', atributos)
         sql.close()
     }
 
-    //READ
-    static def listaEmpresa(){
-        def sql = Sql.newInstance(dbConnParams)
+    @Override
+    void read() {
+        Sql sql = Sql.newInstance(dbConnParams)
         sql.eachRow("SELECT * FROM empresas"){
             empresa ->
                 println('---ID DA EMPRESA: ' + empresa.id_empresa + '---')
@@ -51,18 +51,10 @@ class crudEmpresa {
         sql.close()
     }
 
-    //UPDATE
-    static def atualizaEmpresa(){
-        def sql = Sql.newInstance(dbConnParams)
+    @Override
+    void update() {
         println('SELECIONE O ID DA EMPRESA QUE DESEJA ATUALIZAR: ')
-        println()
-        sql.eachRow("SELECT * FROM empresas"){
-            candidato ->
-                println('---ID DA EMPRESA: ' + empresa.id_empresa + '---')
-                println('NOME: ' + empresa.nome_empresa)
-                println()
-        }
-        sql.close()
+        read()
 
         printf('ID DA EMPRESA: ')
         int choice = (System.in.newReader().readLine() as Integer)
@@ -82,72 +74,64 @@ class crudEmpresa {
             case 1:
                 printf('Digite o nome correto: ')
                 String novonome = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET nome_empresa = ? WHERE id_empresa = ?' ,novonome,choice)
                 sqlupdate.close()
                 break
             case 2:
                 printf('Digite o cnpj correto: ')
                 String novocpf = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET cnpj = ? WHERE id_empresa = ?' ,novocpf,choice)
                 sqlupdate.close()
                 break
             case 3:
                 printf('Digite o e-mail correto: ')
                 String novoemail = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET email_empresa = ? WHERE id_empresa = ?' ,novoemail,choice)
                 sqlupdate.close()
                 break
             case 4:
                 printf('Digite o país correto: ')
                 String novopais = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET pais_empresa = ? WHERE id_empresa = ?' ,novopais,choice)
                 sqlupdate.close()
                 break
             case 5:
                 printf('Digite o CEP correto: ')
                 String novocep = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET cep_empresa = ? WHERE id_empresa = ?' ,novocep,choice)
                 sqlupdate.close()
                 break
             case 6:
                 printf('Digite a nova descrição: ')
                 String novadescricao = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET descricao_empresa = ? WHERE id_empresa = ?' ,novadescricao,choice)
                 sqlupdate.close()
                 break
             case 7:
                 printf('Digite a nova senha: ')
                 String novasenha = (System.in.newReader().readLine())
-                def sqlupdate = Sql.newInstance(dbConnParams)
+                Sql sqlupdate = Sql.newInstance(dbConnParams)
                 sqlupdate.execute('UPDATE empresas SET senha_empresa = ? WHERE id_empresa = ?' ,novasenha,choice)
                 sqlupdate.close()
                 break
         }
     }
 
-    //DELETE
-    static def deletaEmpresa(){
-        def sql = Sql.newInstance(dbConnParams)
+    @Override
+    void delete() {
         println('SELECIONE O ID DA EMPRESA QUE DESEJA DELETAR: ')
-        println()
-        sql.eachRow("SELECT * FROM empresas"){
-            empresa ->
-                println('---ID DA EMPRESA: ' + empresa.id_empresa + '---')
-                println('NOME: ' + empresa.nome_empresa)
-                println()
-        }
-        sql.close()
+        read()
 
         printf('ID DA EMPRESA: ')
         int choice = (System.in.newReader().readLine() as Integer)
 
-        def sqldelete = Sql.newInstance(dbConnParams)
+        Sql sqldelete = Sql.newInstance(dbConnParams)
         sqldelete.execute('DELETE FROM empresas WHERE id_empresa = ?', choice)
         println('EXCLUIDO!')
         sqldelete.close()

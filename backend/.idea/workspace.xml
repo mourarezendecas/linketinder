@@ -5,6 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b14e76a8-0a6d-45b0-af3d-e9927833ced5" name="Changes" comment="Update SOLID">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Usuario.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/connection/Connection.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/connection/IConnection.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/connection/PostgreConnection.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/CandidatoCRUD.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/EmpresaCRUD.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/ICrud.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/VagaCRUD.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,7 +22,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Candidato.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Candidato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Empresa.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/classes/Empresa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/main/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/groovy/main/com/acelerazg/main/Menu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Candidato.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Candidato.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Empresa.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/classes/Empresa.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/crudCandidato.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/crudEmpresa.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/database/crudVaga.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/main/Menu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/acelerazg/main/Menu.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +56,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rezendecas/Documents/linketinder/backend&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/rezendecas/Documents/design-patterns/factory"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.acelerazg.main.Application" />
@@ -78,7 +95,9 @@
       <updated>1666648763866</updated>
       <workItem from="1666648766368" duration="5116000" />
       <workItem from="1666740563811" duration="35000" />
-      <workItem from="1666960152595" duration="1621000" />
+      <workItem from="1666960152595" duration="3129000" />
+      <workItem from="1667155469490" duration="53000" />
+      <workItem from="1667484126181" duration="6629000" />
     </task>
     <task id="LOCAL-00001" summary="Limpando o código">
       <created>1666652709447</created>
@@ -94,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666961184089</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update SOLID">
+      <created>1666961777590</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666961777590</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
